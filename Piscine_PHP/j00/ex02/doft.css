@@ -1,0 +1,169 @@
+BODY {
+	background-color: #505050;
+}
+
+.all {
+	padding-top: 5px;
+	width: 1500px;
+	margin: 0 auto;
+}
+
+HEADER {
+	heigth: 120px;
+	width: 100%;
+	background-color: #909090;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.border {
+	border-radius: 10px;
+	box-shadow: 10px 10px 10px black;
+}
+
+.right_head {
+	float: right;
+	position: relative;
+	width: 290px;
+}
+
+HEADER IMG {
+	margin: 0;
+	height: 120px;
+}
+
+#loupe {
+	height: auto;
+	margin-top: 2px;
+}
+
+#reload {
+	float: right;
+	height: 20px;
+	margin-right: 10px;
+}
+
+#close {
+	float: right;
+	height: 20px;
+	position: absolute;
+	bottom: 30px;
+	right: 10px;
+}
+
+.middle {
+	margin-top: 20px;
+	width: 100%;
+	padding-left: 30px;
+}
+
+.middle .side {
+	float: left;
+	background-color: #909090;
+}
+
+.side_left {
+	width: 145px;
+	height: 430px;
+}
+
+.side_left IMG {
+	width: 70px;
+	margin-top: 15px;
+	margin-left: 35px;
+}
+
+.side_middle {
+	margin-right: 30px;
+	margin-left: 30px;
+	width: 1090px;
+	padding-bottom: 10px;
+}
+
+.side_right {
+	width: 145px;
+	ddtop; 10px;
+	margin-right: 60px;
+	height: 430px;
+	text-align: center;
+}
+
+#oeil_border {
+	border: 5px solid red;
+	border-radius: 10px;
+}
+
+#towel {
+	width: 78px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#book {
+	margin-top: 20px;
+	height: 90px;
+	width: 65px;
+}
+
+.brick {
+	background: repeat url('ressources/brick.jpg');
+	width: 120px;
+	height: 70px;
+	margin-left: 10px;
+}
+
+.cluster {
+	width: 1070px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.greenbox {
+	width: 530px;
+	height: 170px;
+	position: absolute;
+	top: 700px;
+	margin-left: -50px;
+	background-color: #84FF83;
+	font-family: sans-serif;
+}
+
+.greenbox P {
+	font-size: 18px;
+	margin-left: 10px;
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+
+.mybold {
+	font-size: 35px;
+}
+
+.myitalic {
+	margin-top: 0 !important;
+	font-size: 18px !important;
+	font-style: italic;
+}
+
+.txtsha {
+	text-shadow: 7px 7px 5px red;
+}
+
+.txt {
+	margin-left: 10px;
+	border: solid 1px silver;
+	box-shadow: inset 1px 1px 0px silver;
+	width: 385px;
+	height: 22px;
+}
+
+.button {
+	width: 80px;
+	margin-left: 5px;
+	border: 1px solid #b2aeaf;
+	color: black;
+	font-size: 13px;
+	background-color: #f0f3f6;
+	border-radius: 2px;
+	background: linear-gradient(##f0f3f6,#333);
+}
