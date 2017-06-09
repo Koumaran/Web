@@ -1,0 +1,33 @@
+.full_body
+{
+	width: 100%;
+}
+
+form label {
+display:block;
+width:25%;
+float:center;
+}
+
+#form_oublier
+{
+	float:center;
+   	width: 25%;
+   	margin-left: 20%;
+   	background: #BA2F36;
+}
+
+#form_connect
+{
+	float:left;
+   	width: 25%;
+   	margin-left: 20%;
+   	background: #BA2F36;
+}
+#form_register
+{
+	float: right;
+   	width: 25%;
+   	margin-right: 20%;
+   	background: #BA2F36;
+}

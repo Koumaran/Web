@@ -44,6 +44,8 @@ $query = "CREATE TABLE user
 						name VARCHAR(255) NOT NULL , 
 						password VARCHAR(255) NOT NULL,  
 						mail VARCHAR(255) NOT NULL ,
+						rang INT NOT NULL,
+						cle VARCHAR(255) NOT NULL,
 						valid INT, 
 						PRIMARY KEY (id));";
 
@@ -94,8 +96,8 @@ catch(PDOException $e)
 $user = 'root';
 $mail = 'jsivanes@student.42.fr';
 $pass = hash('whirlpool', 'root');
-$query = sprintf("INSERT INTO user (name, password, mail, valid)
-				VALUES ('%s', '%s', '%s', '1')", $user, $pass, $mail);
+$query = sprintf("INSERT INTO user (name, password, mail, rang, cle, valid)
+				VALUES ('%s', '%s', '%s', '1', 'Boss', '1')", $user, $pass, $mail);
 try
 {
 	$pdo->exec($query);
