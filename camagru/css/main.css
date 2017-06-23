@@ -68,6 +68,17 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 */
+/*design des formulaire*/
+.form_wrapper{
+   background:#fff;
+   border:1px solid #ddd;
+   margin:0 auto;
+   margin-top: 10%;
+   font-size:16px;
+   -moz-box-shadow:1px 1px 7px #ccc;
+   -webkit-box-shadow:1px 1px 7px #ccc;
+   box-shadow:1px 1px 7px #ccc;
+}
 /*Croix rouge*/
 .vignette {
     position: relative;

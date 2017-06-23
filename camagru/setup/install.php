@@ -61,7 +61,7 @@ $query = "CREATE TABLE image
 					( 
 						id_img INT NOT NULL AUTO_INCREMENT , 
 						img TEXT NOT NULL , 
-						id_user INT NOT NULL , 
+						user_name INT NOT NULL , 
 						likes INT ,
 						date_img DATE NOT NULL, 
 						PRIMARY KEY (id_img)
@@ -79,7 +79,7 @@ catch(PDOException $e)
 $query = "CREATE TABLE comment
 					(
 						id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-						id_user INT NOT NULL,
+						user_name VARCHAR(255) NOT NULL,
 						id_img INT NOT NULL,
 						message TEXT NOT NULL);";
 

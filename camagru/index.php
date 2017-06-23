@@ -30,8 +30,11 @@ include("setup/preface.php");
 			if ($page === "compte.php") {
 				include("htdocs/compte.php");
 			}
-			if ($page === "photobooth.php") {
+			else if ($page === "photobooth.php") {
 				include("htdocs/photobooth.php");
+			}
+			else if ($page === "gallerie.php") {
+				include('htdocs/gallerie.php');
 			}
 		}
 		elseif ($page === "valid_connect.php")

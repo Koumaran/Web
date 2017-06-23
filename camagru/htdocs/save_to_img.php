@@ -20,9 +20,9 @@ if (isset($_POST['data']))
     }
     file_put_contents($path.$photo_name, $photo);    
     
-    $query = $pdo->prepare('INSERT INTO image (img, id_user, date_img) VALUES (:img, :id, :date_img)');
+    $query = $pdo->prepare('INSERT INTO image (img, user_name, date_img) VALUES (:img, :login, :date_img)');
     try {
-    $query->execute(array(':img' => $photo_name, ':id' => $id, ':date_img' => $this_date));
+    $query->execute(array(':img' => $photo_name, ':login' => $pseudo, ':date_img' => $this_date));
     }
     catch(PDOExecption $e) {
         echo "ERROR ajout de l'image : ".$e->getMessage();
