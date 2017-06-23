@@ -1,6 +1,4 @@
 <?PHP
-include('setup/database.php');
-
 /****************** création de la DB *********************/
 // on teste avant si elle existe ou non (par sécurité)
 
@@ -40,14 +38,15 @@ catch(PDOException $e)
 
 $query = "CREATE TABLE user 
 					( 
-						id INT NOT NULL AUTO_INCREMENT , 
+						id_user INT NOT NULL AUTO_INCREMENT , 
 						name VARCHAR(255) NOT NULL , 
 						password VARCHAR(255) NOT NULL,  
 						mail VARCHAR(255) NOT NULL ,
 						rang INT NOT NULL,
 						cle VARCHAR(255) NOT NULL,
-						valid INT, 
-						PRIMARY KEY (id));";
+						valid INT,
+						portrait VARCHAR(255),
+						PRIMARY KEY (id_user));";
 
 try
 {
@@ -60,12 +59,13 @@ catch(PDOException $e)
 
 $query = "CREATE TABLE image 
 					( 
-						id INT NOT NULL AUTO_INCREMENT , 
+						id_img INT NOT NULL AUTO_INCREMENT , 
 						img TEXT NOT NULL , 
 						id_user INT NOT NULL , 
 						likes INT ,
 						date_img DATE NOT NULL, 
-						PRIMARY KEY (id));";
+						PRIMARY KEY (id_img)
+						)";
 
 try
 {
