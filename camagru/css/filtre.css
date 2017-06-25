@@ -1,11 +1,3 @@
-.booth {
-    background:#fff;
-    border:10px solid #ddd;
-    margin:0 auto;
-    -moz-box-shadow:1px 1px 7px #ccc;
-    -webkit-box-shadow:1px 1px 7px #ccc;
-    box-shadow:1px 1px 7px #ccc;
-}
 .pictured {
 	width: 100%;
 	height: auto;

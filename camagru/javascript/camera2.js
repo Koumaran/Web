@@ -139,6 +139,7 @@ if (hasGetUserMedia()) {
 			else if (xhr.readyState == 4 && xhr.status == 200) {
 				var return_data = xhr.responseText;
 				if (return_data !== "false") {
+					alert(return_data);
 					save.style.visibility = 'hidden';
 					var balise = "<div class='col-6 vignette'><img id='cross_img'\
 					 width='100%' src='"+dataURL+"'><button id='"+return_data+"'\

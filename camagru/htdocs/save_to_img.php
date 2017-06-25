@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include('../setup/database.php');
 include("../setup/identification.php");

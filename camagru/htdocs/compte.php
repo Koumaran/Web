@@ -2,7 +2,6 @@
 include('function/error.php');
 include('function/function_1.php');
 if ($id==0) erreur('Vous ne pouvez pas accéder à cette page si vous n\'êtes pas connecté');
-?><div class="full_body"><?
 $query = $pdo->prepare("SELECT name, mail, password FROM user WHERE name = :login");
 $query->execute(array(':login' => $pseudo));
 $data = $query->fetch();
@@ -14,6 +13,7 @@ if ($portrait != 0)
 }
 if (!isset($_POST['modifer']) && !isset($_POST['change_pass']))
 {?>
+<div class="col-6">
 <div class="form_wrapper" style="width: 360px;">
 	<form class="register active" method="post" action="index.php?page=compte.php">
 		<h3>Mon Compte</h3>
@@ -31,6 +31,8 @@ if (!isset($_POST['modifer']) && !isset($_POST['change_pass']))
 		</div>
 	</form>
 </div>
+</div>
+<div class="col-6">
 <div class="form_wrapper" style="width: 360px;" >
 	<form class="register active" method="post" action="index.php?page=compte.php">
 		<h3>Mot de pass</h3>
@@ -50,6 +52,7 @@ if (!isset($_POST['modifer']) && !isset($_POST['change_pass']))
 			<div class="clear"></div>
 		</div>
 	</form>
+</div>
 </div>
 <?}
 else if (isset($_POST['modifer']) && !empty($_POST['login']) && filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {

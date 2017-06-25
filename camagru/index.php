@@ -10,15 +10,8 @@ include("setup/preface.php");
 	<META name="viewport" content="width=device-width" charset="UTF-8">
 	<TITLE>Camagru</TITLE>
 	<LINK rel="stylesheet" href="css/main.css">
-	<LINK rel="stylesheet" href="css/inside_body.css">
-	<? if ($page === "photobooth.php")
-	{
-		echo '<LINK rel="stylesheet" href="css/filtre.css">';
-	}
-	if ($page === "connexion.php" || $page === 0 || $page === "compte.php") {
-		echo '<LINK rel="stylesheet" href="css/connexion.css">';
-	}
-	?>
+	<LINK rel="stylesheet" href="css/filtre.css">
+	<LINK rel="stylesheet" href="css/connexion.css">
 	</HEAD>
 	<BODY>
 		<?php include("htdocs/entete.php"); ?>

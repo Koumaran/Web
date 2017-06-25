@@ -61,7 +61,7 @@ $query = "CREATE TABLE image
 					( 
 						id_img INT NOT NULL AUTO_INCREMENT , 
 						img TEXT NOT NULL , 
-						user_name INT NOT NULL , 
+						user_name VARCHAR(255) NOT NULL , 
 						likes INT ,
 						date_img DATE NOT NULL, 
 						PRIMARY KEY (id_img)
