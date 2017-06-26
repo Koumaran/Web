@@ -23,10 +23,10 @@ if ($nb_img != 0)
 				</div>
 				<button id="like" class="heart">Like</button>
 			</div>
-			<div class="booth" style="border-top: 0;">
-				<input type="text" maxlength="300" name="comment_text" class="comment_text" placeholder="Un commentaire?">
-				<button id="comment_but" class="comment_but" >Envoyer</button>
-				<div class="comment" id="comment">
+			<div id="coco" class="booth" style="border-top: 0;">
+				<input id="comment_text" type="text" maxlength="300" name="comment_text" class="comment_text" placeholder="Un commentaire?">
+				<button id="comment_but" class="comment_but" onclick="add_comment(this);">Envoyer</button>
+				<div class="form_wrapper" id="comment">
 				<?
 
 				?>
@@ -54,3 +54,4 @@ else
 	echo "<div class='col-12'><p style='text-align:center;'><bold>La gallerie est vide...</bold><p>";
 }
 ?>
+<script type="text/javascript" src="javascript/comment.js"></script>
