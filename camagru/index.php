@@ -10,13 +10,12 @@ include("setup/preface.php");
 	<META name="viewport" content="width=device-width" charset="UTF-8">
 	<TITLE>Camagru</TITLE>
 	<LINK rel="stylesheet" href="css/main.css">
-	<LINK rel="stylesheet" href="css/filtre.css">
 	<LINK rel="stylesheet" href="css/connexion.css">
 	</HEAD>
 	<BODY>
 		<?php include("htdocs/entete.php"); ?>
 		<?php include("htdocs/menu.php"); ?>
-		<div class="row">
+		<div class='row'>
 		<?php
 		if ($id != 0)
 		{
@@ -37,5 +36,6 @@ include("setup/preface.php");
 		?>
 		</div>
 		<?php include("htdocs/footer.php"); ?>
+
 	</BODY>
 </HTML>

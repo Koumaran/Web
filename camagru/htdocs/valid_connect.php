@@ -18,7 +18,7 @@ if (isset($_POST['reminder'])) //renouvellement mot de pass
 	}
 	elseif (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
 	{
-		$query = $pdo->prepare('SELECT id_user, name, mail, cle FROM user WHERE name = :identifiant;');
+		$query = $pdo->prepare('SELECT id_user, name, mail, cle FROM User WHERE name = :identifiant;');
 		$query->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
 		$query->execute();
 		$data = $query->fetch();
@@ -27,7 +27,7 @@ if (isset($_POST['reminder'])) //renouvellement mot de pass
 		{
 			$pass = chaine_aleatoire(6);
 			$hash = hash("whirlpool", $pass);
-			$query = $pdo->prepare('UPDATE user SET password = :hash WHERE name = :login');
+			$query = $pdo->prepare('UPDATE User SET password = :hash WHERE name = :login');
 			$query->execute(array(':hash' => $hash, ':login' => $data['name']));
 			send_mail($pass, "Mot de pass oublier");
 			redirect("index.php", "Un mail vous a etait envoyer avec un nouveau mot de pass!");
@@ -55,7 +55,7 @@ else if (isset($_POST['login'])) //connexion
     else //On check le mot de passe
     {
        	$query=$pdo->prepare('SELECT id_user, name, password, portrait, rang, valid
-       	FROM user WHERE name = :pseudo');
+       	FROM User WHERE name = :pseudo');
        	$query->bindValue(':pseudo',$_POST['identifiant'], PDO::PARAM_STR);
        	$query->execute();
      	$data=$query->fetch();
@@ -64,6 +64,7 @@ else if (isset($_POST['login'])) //connexion
 		{
 			if ($data['valid'] == 1)
 			{
+				$_SESSION['connected'] = 1;
 				$_SESSION['pseudo'] = $data['name'];
 	    		$_SESSION['rang'] = $data['rang'];
 	   			$_SESSION['id'] = $data['id_user'];
@@ -91,9 +92,14 @@ else if (isset($_POST['register'])) //inscription
 		Vous devez remplir tous les champs obligatoire</p>
 		<p>Cliquez <a href="index.php">ici</a> pour revenir</p>';
 	}
+	else if (!ctype_alnum($_POST['password']) || strlen($_POST['password']) < 6)
+	{
+			echo '<p>Votre mot de pass doit contenir au moin un chiffre et une lettre et faire plus de 6 charactères.</p>
+		<p>Cliquez <a href="index.php">ici</a> pour revenir</p>';
+	}
 	else if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
 	{
-		$query = $pdo->prepare('SELECT id_user, name FROM user WHERE name = :pseudo');
+		$query = $pdo->prepare('SELECT id_user, name FROM User WHERE name = :pseudo');
 		$query->bindValue(':pseudo', $_POST['identifiant'], PDO::PARAM_STR);
 		$query->execute();
 		$data = $query->fetch();
@@ -107,7 +113,7 @@ else if (isset($_POST['register'])) //inscription
 		{
 			$pass =hash('whirlpool', $_POST['password']);
 			$key = md5(microtime(TRUE)*100000);
-			$query = sprintf("INSERT INTO user (name, password, mail, rang, cle, valid) 
+			$query = sprintf("INSERT INTO User (name, password, mail, rang, cle, valid) 
 				VALUES ('%s', '%s', '%s', '0', '%s', '0')", $_POST['identifiant'], $pass, $_POST['mail'], $key);
 			try
 			{

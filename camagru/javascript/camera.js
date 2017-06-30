@@ -1,93 +1,171 @@
-// Main initialization
-document.addEventListener('DOMContentLoaded', function() {
-// Global variables
-var video = document.querySelector('video');
-//var audio, audioType;
-var canvas = document.querySelector('canvas');
-var context = canvas.getContext('2d');
-// Custom video filters
-var iFilter = 0;
-var filters = [
-'grayscale',
-'sepia',
-'blur',
-'brightness',
-'contrast',
-'hue-rotate',
-'hue-rotate2',
-'hue-rotate3',
-'saturate',
-'invert',
-'none'
-];
-var streaming = false,
-	width = 500,
-	height = 0,
-	startbutton = document.querySelector('#startbutton');
-// Get the video stream from the camera with getUserMedia
-navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-navigator.mozGetUserMedia || navigator.msGetUserMedia;
-window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
-if (navigator.getUserMedia) {
-// Evoke getUserMedia function
-navigator.getUserMedia({video: true, audio: false}, onSuccessCallback, onErrorCallback);
-function onSuccessCallback(stream) {
-// Use the stream from the camera as the source of the video element
-video.src = window.URL.createObjectURL(stream) || stream;
-// Autoplay
-video.play();
-/* HTML5 Audio
-audio = new Audio();
-audioType = getAudioType(audio);
-if (audioType) {
-audio.src = 'polaroid.' + audioType;
-audio.play();
-}
-*/
-}
-// Display an error
-function onErrorCallback(e) {
-var expl = 'An error occurred: [Reason: ' + e.code + ']';
-console.error(expl);
-alert(expl);
-return;
-}
-} else {
-document.querySelector('.container').style.visibility = 'hidden';
-document.querySelector('.warning').style.visibility = 'visible';
-return;
-}
-// Draw the video stream at the canvas object
-video.addEventListener('canplay', function(ev){
-    if (!streaming) {
-      height = video.videoHeight / (video.videoWidth/width);
-      video.setAttribute('width', width);
-      video.setAttribute('height', height);
-      canvas.setAttribute('width', width);
-      canvas.setAttribute('height', height);
-      streaming = true;
-    }
-  }, false);
+var video = document.getElementById('video'),
+		canvas = document.getElementById('canvas'),
+		gallerie = document.getElementById('gallerie'),
+		photo = document.getElementById('photo'),
+		save = document.getElementById('save_button'),
+		streaming = false,
+		width = 400,
+		height = 300,
+		gallerie_img = [],
+		nb_gallerie_img = 0, //pour pagination a faire
+		i = 0, //compteur multiusage
+		effet = 0,
+		iFilter = 0,
+		filters = [
+		'blur(2px)',
+		'brightness(2)',
+		'contrast(200%)',
+		'grayscale(50)',
+		'hue-rotate(90deg)',
+		'invert(75%)',
+		'opacity(50%)',
+		'saturate(50)',
+		'sepia(80%)',
+		'none'],
+		vendorUrl = window.URL || window.webkitURL;
 
-  function takepicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
-  }
+function hasGetUserMedia() {
+	return !!(navigator.getUserMedia ||
+			  navigator.webkitGetUserMedia ||
+			  navigator.mozGetUserMedia || 
+			  navigator.msGetUserMedia);
+};
+//fonction pour la creation de l'objet XMLHttpRequest Ajax
+//multiverification IE, SAFARIE, CHROME.....
 
-  startbutton.addEventListener('click', function(ev){
-      takepicture();
-    ev.preventDefault();
-  }, false);
+function getXMLHttpRequest() {
+	var xhr = null;
+	
+	if (window.XMLHttpRequest || window.ActiveXObject) {
+		if (window.ActiveXObject) {
+			try {
+				xhr = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch(e) {
+				xhr = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+		} else {
+			xhr = new XMLHttpRequest(); 
+		}
+	} else {
+		alert("Votre navigateur ne supporte pas l'objet XMLHTTPRequest...");
+		return null;
+	}
+	
+	return xhr;
+};
 
-// Add event listener for our Button (to switch video filters)
-document.querySelector('canvas').addEventListener('click', function() {
-canvas.className = '';
-var effect = filters[iFilter++ % filters.length]; // Loop through the filters.
-if (effect) {
-canvas.classList.add(effect);
+function sub_img(objet)
+{
+	var id = objet.id;
+	var parent = objet.parentNode;
+	var xhr = getXMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+		{
+			if (xhr.responseText == 'yes')
+			{
+				parent.parentNode.removeChild(parent);
+			}
+			else if (xhr.responseText == 'no')
+			{
+				window.scrollTo(0,0);
+				alert('une erreur s\'est produite!');
+			}
+		}
+	}
+	xhr.open("POST", "htdocs/delete_img.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send('photo='+id);
+};
+
+if (hasGetUserMedia()) {
+
+	navigator.getUserMedia =	navigator.getUserMedia ||
+							navigator.webkitGetUserMedia ||
+							navigator.mozGetUserMedia ||
+							navigator.msGetUserMedia;
+
+	navigator.getUserMedia({
+		video: true,
+		audio: false
+	}, function(stream) {
+		video.src = vendorUrl.createObjectURL(stream);
+		video.play();
+	}, function(error) {
+		alert("La Webcam est bloqué par votre navigateur !");
+		window.location.href = "index.php?page=compte.php";
+	});
+
+	video.addEventListener('canplay', function(ev)
+	{
+		if (!streaming)
+		{
+			video.setAttribute('width', width);
+			video.setAttribute('height', height);
+			canvas.setAttribute('width', width);
+			canvas.setAttribute('height', height);
+			streaming = true;
+		}
+	}, false);
+
+	document.getElementById('capture').addEventListener('click', function() {
+		var context = canvas.getContext('2d');
+		/* ajoute le filtre au canvas selon le navigateur */
+		if (effet) {
+			context.webkitFilter = effet;
+			context.mozFilter = effet;
+			context.filter = effet;
+		}
+		else
+			context.filter = 'none';
+		context.drawImage(video, 0, 0, width, height);
+		photo.setAttribute('src', canvas.toDataURL('image/png'));
+		save.style.visibility = 'visible';
+		document.getElementById('filtre').style.visibility = "visible";
+	});
+
+	document.getElementById('filtre').addEventListener('click', function() {
+		effet = filters[iFilter++ % filters.length];
+		/* ajoute le filtre au video selon navigateur */
+		if (effet) {
+			video.style.webkitFilter = effet;
+			video.style.mozFilter = effet;
+			video.style.filter= effet;
+		}
+	});
+
+	save.addEventListener('click', function() {
+		var dataURL = photo.src;
+		var tosend = 'data=' + dataURL;
+		var xhr = getXMLHttpRequest();	//create object XHR go up for function
+		xhr.open("POST", "htdocs/save_to_img.php", true); //true pour asynchrone
+		//si methode POST modifier le type MIME avec la ligne suivante
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState < 4) {
+				save.value = "Enregistrement en Cours";
+			}
+			else if (xhr.readyState == 4 && xhr.status == 200) {
+				var return_data = xhr.responseText;
+				console.log(return_data);
+				if (return_data !== "false") {
+					save.style.visibility = 'hidden';
+					var div_gallerie = document.getElementById('gallerie');
+					var new_div = document.createElement("div");
+					new_div.setAttribute('class', 'col-6 vignette');
+					new_div.innerHTML = "<img id='cross_img' width='100%' src='images/"+return_data+"'>\
+					<button id='images/"+return_data+"' class='cross' onclick='sub_img(this);'>X</button>";
+					div_gallerie.insertBefore(new_div, div_gallerie.firstChild);
+				}
+			}
+		}
+		//envoi de la requete
+		xhr.send(tosend);
+	});
+
 }
-}, false);
-}, false);
+else {
+	alert("La Webcam n'est pas supporté par votre navigateur !");
+	window.location.href = "index.php?page=non_cam.php";
+};

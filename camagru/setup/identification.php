@@ -19,8 +19,7 @@ if ($db->fetchColumn() == 0) {
 	{
 		$db->execute();
 	}
-	catch(PDOException $e)
-	{
+	catch(PDOException $e){
 		die('Erreur : '.$e->getMessage());
 	}
 }

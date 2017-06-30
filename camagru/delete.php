@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('setup/database.php');
 try
 {
@@ -18,5 +19,17 @@ catch(PDOException $e)
 {
 	die('Erreur : '.$e->getMessage());
 }
+if (file_exists('images'))
+{
+	$files = array_diff(scandir('images'), array('.', '..'));
+	foreach ($files as $file) {
+		unlink('images/'.$file);
+	}
+	rmdir('images');
+}
+if (isset($_SESSION['connected']) && $_SESSION['connected'] == 1) {
+	session_destroy();
+}
+header('Refresh:3;url=index.php');
 echo 'db delete';
 ?>

@@ -1,6 +1,3 @@
-* {
-    box-sizing: border-box;
-}
 .row::after {
     content: "";
     clear: both;
@@ -11,18 +8,26 @@
     padding: 15px;
 }
 html {
-	max-width: 1800px;
-	height: 100%;
-	margin: 0 auto;
+  max-width: 1800px;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 body {
-  min-height: 100%;
+  position: relative;
   margin: 0;
-  padding: 0;
-  * {-moz-box-sizing: border-box; box-sizing: border-box;}
+  padding-bottom: 6rem;
+  min-height: 100%;
+  /*font-family: "Brush Script Std", Brush Script MT, cursive;
+*/
 }
 .header {
-	font-family: "Brush Script Std", Brush Script MT, cursive;
 	background-color: #BA2F36;
 	font-size: 50px;
     padding: 15px;
@@ -35,7 +40,6 @@ body {
 	background-color: #BA2F36;
 }
 .menu ul {
-	font-family: "Brush Script Std", Brush Script MT, cursive;
     list-style-type: none;
     text-align: center;
     margin: 0;
@@ -74,7 +78,7 @@ body {
    border:1px solid #ddd;
    margin:0 auto;
    margin-top: 10%;
-   font-size:16px;
+   font-size:20px;
    -moz-box-shadow:1px 1px 7px #ccc;
    -webkit-box-shadow:1px 1px 7px #ccc;
    box-shadow:1px 1px 7px #ccc;
@@ -84,11 +88,42 @@ body {
     background:#fff;
     border:10px solid #ddd;
     margin:0 auto;
+    height: auto;
     -moz-box-shadow:1px 1px 7px #ccc;
     -webkit-box-shadow:1px 1px 7px #ccc;
     box-shadow:1px 1px 7px #ccc;
 }
+/* Partie photobooth */
+.pictured {
+  width: 100%;
+  height: auto;
+}
+.capture_button {
+  display:block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color:#BA2F36;
+  color:#fff;
+  text-align: center;
+  text-decoration: none;  
+}
+.save_button {
+  display:block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color:#BA2F36;
+  color:#fff;
+  text-align: center;
+  text-decoration: none;
+  visibility: hidden;
+}
+#canvas {
+  display: none;
+}
 /*design photo_gallerie*/
+.galleriebox {
+  position: relative;
+}
 .pic_gallerie {
   background:#fff;
   border:1px solid #ddd;
@@ -98,7 +133,19 @@ body {
   box-shadow:1px 1px 7px #ccc;
 }
 /*button like*/
-.heart {
+.like {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  border-radius:12px 0 12px 0;
+  background: #BA2F36;
+  border:none;
+  color:#fff;
+  font:bold 12px Verdana;
+  padding:6px 0 6px 0;
+  box-shadow:1px 1px 3px #999;
+}
+.not_like {
   display: block;
   margin: 0 auto;
   width: 50%;
@@ -112,7 +159,7 @@ body {
 }
 /*contenue commentaire page gallerie*/
 .comment_text {
-  width: 80%;
+  width: 100%;
 }
 .comment_but {
   width: 15%;
@@ -123,6 +170,44 @@ body {
   font:bold 10px Verdana;
   box-shadow:1px 1px 3px #999;
 }
+.commentbox {
+  max-height: 300px;
+  overflow: scroll;
+  width: 100%;
+}
+.dialogbox {
+  position: relative;
+  margin: 10px 5px;
+  background-color: #DADADA;
+  border-radius: 3px;
+  border: 5px solid #ccc;
+}
+.message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+/* permet dde faire une fleche vers le haut sur la bulle de text */
+/*.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #ccc;
+}
+
+.tip-up {
+  top: -25px;  /*Same as body margin top + border */
+/*  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+*/
 /*pagination */
 .pagination {
   clear: both;
@@ -160,39 +245,45 @@ body {
     background: rgba(255,255,255,0);
 }
 .footer {
-	position: absolute; bottom: 0;
-	width: 100%;
-	max-width: 1800px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: right;
+  background-color: #BA2F36;
 }
-.footer hr {
-	color: solid black; 
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
 }
-.footer p {
-	font-family: "Brush Script Std", Brush Script MT, cursive;
-	text-align: right;
-	margin-top: -10px;
-	padding: 10px;
-    background-color: #BA2F36;
-	padding-right: 10px;
-	font-size: 15px;
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
 }
-/* For desktop: */
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
-@media only screen and (max-width: 600px) {
-    /* For mobile phones: */
-    [class*="col-"] {
-        width: 100%;
-    }
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
 }
