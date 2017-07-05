@@ -26,7 +26,7 @@ if ($nb_img != 0)
 		$likes = get_like_img_user($id, $data['id_img']);
 		$likes = ($likes === true)? "like" : "not_like";
 		?>
-		<div class="col-4">
+		<div class="col-3 margin_d">
 			<div id="up_gallerie" class="booth">
 				<div class="pic_gallerie">
 					<img src=<?echo $data['img'];?> style="width:100%;">

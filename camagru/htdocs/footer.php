@@ -1,1 +1,1 @@
-<footer class="footer">© jsivanes 2017</footer>
+<footer id="footer">© jsivanes 2017</footer>

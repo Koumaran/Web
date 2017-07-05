@@ -23,4 +23,23 @@ function get_img_user($log_id)
 	$query->closeCursor();
 	return ($data);
 }
+
+function get_id_user_img($id_img)
+{
+	require 'ft_connect_db.php';
+
+	$query = $pdo->prepare('SELECT id_user FROM Image WHERE id_img = :img');
+	$query->bindValue(':img', $id_img, PDO::PARAM_INT);
+	try {
+		$query->execute();
+	}
+	catch(PDOExeption $e) {
+		echo 'Error get_id_user_img :'.$e->getMessage();
+	}
+	$data = $query->fetch();
+	$query->closeCursor();
+	if (isset($data['id_user']))
+		return $data['id_user'];
+	return 0;
+}
 ?>

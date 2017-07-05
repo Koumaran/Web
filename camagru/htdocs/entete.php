@@ -1,3 +1,3 @@
-<header class="header">
+<header id="header">
 	<p>Camagru</p>
 </header>

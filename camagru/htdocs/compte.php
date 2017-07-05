@@ -13,7 +13,7 @@ if ($portrait != 0)
 }
 if (!isset($_POST['modifer']) && !isset($_POST['change_pass']))
 {?>
-<div class="col-6">
+<div class="col-5 col-p">
 <div class="form_wrapper" style="width: 360px;">
 	<form class="register active" method="post" action="index.php?page=compte.php">
 		<h3>Mon Compte</h3>
@@ -32,7 +32,7 @@ if (!isset($_POST['modifer']) && !isset($_POST['change_pass']))
 	</form>
 </div>
 </div>
-<div class="col-6">
+<div class="col-5 col-p">
 <div class="form_wrapper" style="width: 360px;" >
 	<form class="register active" method="post" action="index.php?page=compte.php">
 		<h3>Mot de pass</h3>

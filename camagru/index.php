@@ -15,7 +15,7 @@ include("setup/preface.php");
 	<BODY>
 		<?php include("htdocs/entete.php"); ?>
 		<?php include("htdocs/menu.php"); ?>
-		<div class='row'>
+		<div id='container'>
 		<?php
 		if ($id != 0)
 		{
