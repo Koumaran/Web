@@ -5,13 +5,13 @@
 }
 [class*="col-"] {
     float: left;
-    padding: 15px;
+    padding: 1%;
 }
 .col-s {
   width: 23%;
 }
 .col-p {
-  padding: 0;
+  margin: 0 auto;
 }
 html {
   max-width: 1800px;
@@ -22,21 +22,22 @@ html {
 
 body {
   height: 100%;
+  margin: 0;
 }
 .scrool {
   overflow-y: scroll;
 }
 #header {
 	background-color: #BA2F36;
-	font-size: 50px;
-  padding: 15px;
-  margin: 0 auto;
+  right: 0;
+  top: 0;
+  left: 0;
+  max-width: 1800px;
 }
 #header p {
-	margin: 0 auto;
-}
-.menu {
-	background-color: #BA2F36;
+  font-size: 44px;
+  margin: 0 auto;
+  margin-left: 5%;
 }
 ul {
     list-style-type: none;
@@ -62,17 +63,21 @@ li {
     color: white;
 }
 #container {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-bottom: 5%;
   height: 90%;
+  text-align: center;
   overflow: auto;
 }
 #footer {
   margin: 0 auto;
-  height: 1%;
+  height: 5%;
   position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 1rem;
+  padding: 0;
   text-align: right;
   background-color: #BA2F36;
   max-width: 1800px;
@@ -115,13 +120,10 @@ li {
   overflow: hidden;
 }
 #video {
-  width: 100%;
-  height: 100%;
-  max-width: 400px;
-  max-height: 300px;
   box-sizing: content-box;
-  top: 0;
+  margin: auto;
 }
+
 #montage_box {
   max-width: 1800px;
 }
@@ -167,8 +169,6 @@ li {
   display: none;
 }
 #gallerie {
-  margin-top: 10px;
-  border:1px solid #ddd;
   box-shadow: 2px 2px 7px #ccc;
   max-height: 500px;
 }
@@ -315,8 +315,6 @@ li {
     .col-m-10 {width: 83.33%;}
     .col-m-11 {width: 91.66%;}
     .col-m-12 {width: 100%;}
-    #photo_booth {margin-left: 200px;}
-    #show_picture {margin-left: 200px;}
     .col-s {width: 18.33%;}
 }
 @media only screen and (min-width: 1025px) {
@@ -333,7 +331,6 @@ li {
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
-    #photo_booth {margin-left: 200px;}
     .col-s {width: 17.33%;}
     .margin_d {margin-left: 80px;}
 }

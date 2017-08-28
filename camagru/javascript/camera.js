@@ -23,6 +23,7 @@ var video = document.getElementById('video'),
 		'sepia(80%)',
 		'none'],
 		vendorUrl = window.URL || window.webkitURL;
+var tmp_div;
 
 function hasGetUserMedia() {
 	return !!(navigator.getUserMedia ||
@@ -103,8 +104,9 @@ function add_file(evt)
 		var go_back = document.createElement('input');
 		go_back.type = 'button';
 		go_back.value = 'Webcam';
+		go_back.setAttribute('class', 'col-12');
 		go_back.setAttribute('onclick', "window.location='index.php?page=photobooth.php'");
-		document.getElementById('container').insertBefore(go_back, gallerie);
+		document.getElementById('container').insertBefore(go_back, document.getElementById('button_box'));
 	}
 };
 
@@ -128,46 +130,45 @@ function add_montage(montage)
 		}
 	}
 	var p = document.getElementById('photo_booth');
-	var p_width = p.offsetWidth;
-	var p_height = p.offsetHeight;
-	var format = (montage.title === 'burger.png' || montage.title === 'cocktail.png') ? 25 : 50;
-	format = (montage.title === 'visage.png' || montage.title === 'lapin.png') ? 75 : format;
-	format = (montage.title === 'barbe.png') ? 40 : format;
-	console.log(format);
+	var p_width = video.offsetWidth;
+	var p_height = video.offsetHeight;
 	img = document.createElement('img');
 	img.setAttribute('src', montage.src);
 	img.setAttribute('alt', montage.title);
-	img.setAttribute('draggable', 'true');
-	img.setAttribute('onmousedown', 'drag_montage(this)');
+	img.setAttribute('draggable', 'false');
+	img.width = 100;
+	img.setAttribute('onmousedown', 'mouseDown()');
+	img.setAttribute('onmouseup', 'mouseUp()');
+	//on ajoute ici le déplacer la version web mobile (touch)
+	img.addEventListener('touchmove', function(event) {
+		var touch = event.targetTouches[0];
+		var draggable = document.getElementById('montage');
+		
+		//place element where the finger is
+		draggable.style.left = touch.pageX - 60 + 'px';
+		draggable.style.top = touch.pageY - 300 + 'px';
+		event.preventDefault();
+	}, false);
 	img.id = 'montage';
 	img.style.position = 'absolute';
-	img.style.top = '0px';
-	img.style.left = '0px';
-	img.style.width = ((format * p_width) / 100) + 'px';
-	img.style.height = ((format * p_height) / 100) + 'px';
 	document.getElementById('filtre').style.visibility = "visible";
 	document.getElementById('capture').style.visibility = "visible";
 	document.getElementById('photo_booth').appendChild(img);
 }
 
-function mouseDown(e) {
+function mouseDown() {
 	var montage = document.getElementById('montage');
 	var photo_booth = document.getElementById('photo_booth');
 	var left = photo_booth.offsetLeft;
 	var top = photo_booth.offsetTop;
-	montage.style.left = e.clientX - left - 50 + 'px';
-	montage.style.top = e.clientY - top - 25 + 'px';
-	montage.setAttribute('onmouseup', 'mouseUp()');
+	montage.addEventListener('mousemove', mouseDown, true);
+	montage.style.left = event.pageX - left - 25 + 'px';
+	montage.style.top = event.pageY - top - 25 + 'px';
 }
 
 function mouseUp() {
 	var montage = document.getElementById('montage');
 	montage.removeEventListener('mousemove', mouseDown, true);
-	montage.setAttribute('onmousedown', 'drag_montage(this)');
-}
-
-function drag_montage(montage) {
-	montage.addEventListener('mousemove', mouseDown, true);
 }
 
 if (hasGetUserMedia()) {
@@ -282,21 +283,27 @@ if (hasGetUserMedia()) {
 
 	//ajout du boutton d'ajout d'image
 	var file_getter = document.createElement('input');
+	tmp_div = document.createElement('div');
 	file_getter.setAttribute('id', 'add_file');
 	file_getter.setAttribute('type', 'file');
 	file_getter.setAttribute('accept', '.png, .jpeg, .gif');
 	file_getter.setAttribute('onchange', 'add_file(this)');
-	document.getElementById('container').insertBefore(file_getter, gallerie);
+	tmp_div.setAttribute('class', 'col-12');
+	tmp_div.appendChild(file_getter);
+	document.getElementById('container').insertBefore(tmp_div, document.getElementById('button_box'));
 }
 else {
 	alert("La Webcam n'est pas supporté par votre navigateur !");
+	tmp_div = document.createElement('div');
 	var file_getter = document.createElement('input');
 	file_getter.setAttribute('id', 'add_file');
 	file_getter.setAttribute('type', 'file');
 	file_getter.setAttribute('accept', '.png, .jpeg, .gif');
 	file_getter.setAttribute('onchange', 'add_file(this)');
 	document.getElementById('photo_booth').removeChild(video);
-	document.getElementById('container').insertBefore(file_getter, document.getElementById('button_box'));
+	tmp_div.setAttribute('class', 'col-12');
+	tmp_div.appendChild(file_getter);
+	document.getElementById('container').insertBefore(tmp_div, document.getElementById('button_box'));
 };
 
 

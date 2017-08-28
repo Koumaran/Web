@@ -20,21 +20,23 @@ while (false !== ($montage = readdir($montages))) {
 ?>
 	</ul>
 </div>
-<div class="col-6 col-p">
+<div class="col-12">
 	<p>Etape 2: Prenez votre photo</p>
 </div>
-<div class="col-6 col-p">
+<div class="col-12">
+	<div id="photo_booth">
+		<video id="video"></video>
+	</div>
+</div>
+<div id='button_box' class="col-12">
+	<input type='button' id='filtre' value="Filtre" class="capture_button">
+	<input type='button' id="capture" class="capture_button" value="Prendre une photo">
+	<input type='button' id="save_button" class="save_button" value="Enregistrer">
+</div>
+<div class="col-12">
 	<p>Etape 3: Visualisez votre photo</p>
 </div>
-<div id="photo_booth" class="col-3 col-p">
-		<video id="video"></video>
-</div>
-<div id='button_box' class="col-1">
-	<a href="#" id='filtre' class="capture_button">Filtre</a>
-	<a href="#" id="capture" class="capture_button">Prendre une photo</a>
-	<a href="#" id="save_button" class="save_button">Enregistrer</a>
-</div>
-<div id="show_picture" class="col-3 col-p">
+<div class="col-12">
 	<canvas id="canvas"></canvas>
 	<img id="photo">
 </div>
@@ -42,7 +44,7 @@ while (false !== ($montage = readdir($montages))) {
 	$tab_img = get_img_user($id);
 	$len = count($tab_img);
 	if ($len > 0) {
-		echo "<div id='gallerie' class='col-11 scrool'>";
+		echo "<div id='gallerie' class='col-12 scrool'>";
 		while ($tab_img[--$len]['img'])
 		{
 			echo "<div class='col-s vignette'>
@@ -50,7 +52,7 @@ while (false !== ($montage = readdir($montages))) {
 				<button id='".$tab_img[$len]['img']."' class='cross' onclick='sub_img(this);'>X</button>
 			</div>";
 		}
+		echo "</div>";
 	}
 ?>
-</div>
 <script type="text/javascript" src="javascript/camera.js"></script>
