@@ -21,6 +21,9 @@ function send_mail($key, $sujet)
 	$mail = $_POST['mail'];
 	$login = $_POST['identifiant'];
 	$entete = "From: jsivanes@student.42.fr";
+	$str = strstr($_SERVER[RESQUEST_URI],"/");
+	$uri = strsub($str, 0, strlen($str));
+	$url_activation = 'localhost:'.$_SERVER['SERVER_PORT'].''.$uri.'/config/activation.php';
 	if ($sujet === "Activer votre compte")
 	{	
 		$message = 'Bienvenue sur Camagru,
@@ -28,7 +31,7 @@ function send_mail($key, $sujet)
 Pour activer votre compte, veuillez cliquer sur le lien ci dessous
 ou copier/coller dans votre navigateur internet.
 
-'.URL_ACTIVATION.'?log='.urlencode($login).'&key='.urlencode($key).'
+'.$url_activation.'?log='.urlencode($login).'&key='.urlencode($key).'
  
  
 ---------------

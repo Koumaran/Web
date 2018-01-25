@@ -1,8 +1,8 @@
 <?php
 session_start();
-include('../setup/database.php');
-include("../setup/identification.php");
-include("../setup/preface.php");
+include('../config/database.php');
+include("../config/identification.php");
+include("../config/preface.php");
 include("../function/ft_comment.php");
 include("../function/ft_image.php");
 include("../function/ft_user.php");

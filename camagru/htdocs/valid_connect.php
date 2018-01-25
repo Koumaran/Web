@@ -1,5 +1,5 @@
 <?php
-include('setup/identification.php');
+include('config/identification.php');
 include('function/error.php');
 include('function/verif_function.php');
 include('function/function_1.php');
