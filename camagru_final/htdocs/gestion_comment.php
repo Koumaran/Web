@@ -1,8 +1,8 @@
 <?php
 session_start();
-include('../setup/database.php');
-include("../setup/identification.php");
-include("../setup/preface.php");
+include('../config/database.php');
+include("../config/identification.php");
+include("../config/preface.php");
 include("../function/ft_comment.php");
 include("../function/ft_image.php");
 include("../function/ft_user.php");
@@ -10,7 +10,7 @@ include("../function/ft_user.php");
 if (isset($_POST['img_id']) && isset($_POST['value']) && isset($_POST['state']))
 {
 	$img_id = $_POST['img_id'];
-	$value = $_POST['value'];
+	$value = htmlspecialchars($_POST['value']);
 	if ($_POST['state'] == 1)
 	{
 		if (($result = add_comment($id, $img_id, $value))!== 0) {

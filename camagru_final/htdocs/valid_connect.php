@@ -1,7 +1,6 @@
 <?php
-include('setup/identification.php');
+include('config/identification.php');
 include('function/error.php');
-include('function/verif_function.php');
 include('function/function_1.php');
 
 
@@ -69,7 +68,7 @@ else if (isset($_POST['login'])) //connexion
 	    		$_SESSION['rang'] = $data['rang'];
 	   			$_SESSION['id'] = $data['id_user'];
 	   			$_SESSION['portrait'] = $data['portrait'];
-	   	 		redirect("index.php?page=photobooth.php", 0);
+	   	 		redirect("index.php?page=galerie.php", 0);
 			}
 			else
 			{
@@ -124,10 +123,9 @@ else if (isset($_POST['register'])) //inscription
 				echo ("Erreur ajout de ".$_POST['identifiant']." : ".$e->getMessage());
 			}
 			//fonction d'envoi d'email
-			send_mail($key, "Activer votre compte");
+			$str = send_mail($key, "Activer votre compte");
 			redirect("index.php", '<p>Bravo! Votre compte a était créé. Pensez a
-			 l\'activer avant de vous connecetez.</p>
-			<p>Cliquez <a href="index.php">ici</a></p>');
+			 l\'activer avant de vous connecetez.</p> Cliquez <a href="index.php">ici</a></p>'.'<p>'.$str.'</p>');
 			}
 	}
 	else

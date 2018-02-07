@@ -1,5 +1,5 @@
 todo:
-revoir les image de montage leur taille et leur forme
+revoir le scripte de modification de l'url
 
 
 # Camagru

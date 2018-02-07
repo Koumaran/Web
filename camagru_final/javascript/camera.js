@@ -1,13 +1,13 @@
 var video = document.getElementById('video'),
 		canvas = document.getElementById('canvas'),
-		gallerie = document.getElementById('gallerie'),
+		galerie = document.getElementById('galerie'),
 		photo = document.getElementById('photo'),
 		save = document.getElementById('save_button'),
 		streaming = false,
 		width = 400,
 		height = 300,
-		gallerie_img = [],
-		nb_gallerie_img = 0, //pour pagination a faire
+		galerie_img = [],
+		nb_galerie_img = 0, //pour pagination a faire
 		i = 0, //compteur multiusage
 		effet = 0,
 		iFilter = 0,
@@ -137,8 +137,8 @@ function add_montage(montage)
 	img.setAttribute('alt', montage.title);
 	img.setAttribute('draggable', 'false');
 	img.width = 100;
-	img.setAttribute('onmousedown', 'mouseDown(event)');
-	img.setAttribute('onmouseup', 'mouseUp(event)');
+	img.setAttribute('onmousedown', 'mouseDown()');
+	img.setAttribute('onmouseup', 'mouseUp()');
 	//on ajoute ici le déplacer la version web mobile (touch)
 	img.addEventListener('touchmove', function(event) {
 		var touch = event.targetTouches[0];
@@ -156,7 +156,7 @@ function add_montage(montage)
 	document.getElementById('photo_booth').appendChild(img);
 }
 
-function mouseDown(event) {
+function mouseDown() {
 	var montage = document.getElementById('montage');
 	var photo_booth = document.getElementById('photo_booth');
 	var left = photo_booth.offsetLeft;
@@ -166,7 +166,7 @@ function mouseDown(event) {
 	montage.style.top = event.pageY - top - 25 + 'px';
 }
 
-function mouseUp(event) {
+function mouseUp() {
 	var montage = document.getElementById('montage');
 	montage.removeEventListener('mousemove', mouseDown, true);
 }
@@ -224,7 +224,6 @@ if (hasGetUserMedia()) {
 			context.drawImage(video, 0,0, width, height);
 		context.drawImage(montage, x, y, width_img, height_img);
 		photo.setAttribute('src', canvas.toDataURL('image/png'));
-		save.value = "Enregistrer";
 		save.style.visibility = 'visible';
 		document.getElementById('filtre').style.visibility = "visible";
 		event.preventDefault();
@@ -261,20 +260,20 @@ if (hasGetUserMedia()) {
 			else if (xhr.readyState == 4 && xhr.status == 200) {
 				var return_data = xhr.responseText;
 				if (return_data !== "false") {
-					var div_gallerie = document.getElementById('gallerie');
-					if (!div_gallerie) {
-						div_gallerie = document.createElement('div');
-						div_gallerie.setAttribute('class', 'col-11 scrool');
-						div_gallerie.setAttribute('id', 'gallerie');
+					var div_galerie = document.getElementById('galerie');
+					if (!div_galerie) {
+						div_galerie = document.createElement('div');
+						div_galerie.setAttribute('class', 'col-11 scrool');
+						div_galerie.setAttribute('id', 'galerie');
 						var big_div = document.getElementById('container');
-						big_div.appendChild(div_gallerie);
+						big_div.appendChild(div_galerie);
 					}
 					save.style.visibility = 'hidden';
 					var new_div = document.createElement("div");
 					new_div.setAttribute('class', 'col-s vignette');
 					new_div.innerHTML = "<img id='cross_img' width='100%' src='images/"+return_data+"'>\
 					<button id='images/"+return_data+"' class='cross' onclick='sub_img(this);'>X</button>";
-					div_gallerie.insertBefore(new_div, div_gallerie.firstChild);
+					div_galerie.insertBefore(new_div, div_galerie.firstChild);
 				}
 			}
 		}

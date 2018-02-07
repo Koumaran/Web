@@ -19,22 +19,16 @@ if ($nb_img != 0)
 		$query->execute();
 	}
 	catch(PDOExeption $e) {
-		die("Erreur gallerie: ".$e->getMessage());
+		die("Erreur galerie: ".$e->getMessage());
 	}
-	$i = 0;
 	while (($data = $query->fetch()))
 	{
 		$likes = get_like_img_user($id, $data['id_img']);
 		$likes = ($likes === true)? "like" : "not_like";
-		if ($i++ % 3 == 0) {
-			echo "<div class='col-12'>";
-			$to_end_div = 3;
-			//echo '<script>console.log("'.$i.'")</script>';
-		}
 		?>
-		<div class="col-3s">
-			<div id="up_gallerie" class="booth">
-				<div class="pic_gallerie">
+		<div class="col-3 margin_d">
+			<div id="up_galerie" class="booth">
+				<div class="pic_galerie">
 					<img src=<?echo $data['img'];?> style="width:100%;">
 				</div>
 				<input type='button' id=<?echo $data['id_img']?> class=<?echo $likes;?> onclick="get_like(this);" value=<?if ($likes === 'like') {echo $data['likes'];} else {echo'Like';}?>>
@@ -54,25 +48,16 @@ if ($nb_img != 0)
 				?>
 			</div>
 		</div>
-	<?
-		if ($to_end_div-- == 1) {
-			echo "</div>";
-		}
-	}
-	//Dans les cas où il y aurait moin de 3 photo par page
-	if ($to_end_div > 0) {
-		echo "</div>";
-	}
-
+	<?}
 	if ($nbPage > 1) {
 		$i = 0;
 		?><div class="pagination"><?
 		while ($i++ < $nbPage)
 		{
 			if ($i == $cPage) {
-				echo '<a href="index.php?page=gallerie.php&p='.$i.'" class="active">'.$i.'</a>';				
+				echo '<a href="index.php?page=galerie.php&p='.$i.'" class="active">'.$i.'</a>';				
 			} else {
-				echo '<a href="index.php?page=gallerie.php&p='.$i.'">'.$i.'</a>';
+				echo '<a href="index.php?page=galerie.php&p='.$i.'">'.$i.'</a>';
 			}
 		}
 		?></div><?
@@ -80,7 +65,7 @@ if ($nb_img != 0)
 }
 else
 {
-	echo "<div class='col-12'><p style='text-align:center;'><bold>La gallerie est vide...</bold><p>";
+	echo "<div class='col-12'><p style='text-align:center;'><bold>La galerie est vide...</bold><p>";
 }
 ?>
-<script type="text/javascript" src="javascript/gallerie.js"></script>
+<script type="text/javascript" src="javascript/galerie.js"></script>

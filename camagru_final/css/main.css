@@ -103,7 +103,7 @@ li {
    -webkit-box-shadow:1px 1px 7px #ccc;
    box-shadow:1px 1px 7px #ccc;
 }
-/*design photobooth & gallerie*/
+/*design photobooth & galerie*/
 .booth {
     background:#fff;
     border:10px solid #ddd;
@@ -168,15 +168,15 @@ li {
 #canvas {
   display: none;
 }
-#gallerie {
+#galerie {
   box-shadow: 2px 2px 7px #ccc;
   max-height: 500px;
 }
-/*design photo_gallerie*/
-.galleriebox {
+/*design photo_galerie*/
+.galeriebox {
   position: relative;
 }
-.pic_gallerie {
+.pic_galerie {
   background:#fff;
   border:1px solid #ddd;
   margin:0 auto;
@@ -209,7 +209,7 @@ li {
   padding:6px 0 6px 0;
   box-shadow:1px 1px 3px #999;
 }
-/*contenue commentaire page gallerie*/
+/*contenue commentaire page galerie*/
 .comment_text {
   width: 98%;
 }
@@ -306,7 +306,6 @@ li {
     .col-m-1 {width: 8.33%;}
     .col-m-2 {width: 16.66%;}
     .col-m-3 {width: 25%;}
-    .col-m-3s {width: 30%;}
     .col-m-4 {width: 33.33%;}
     .col-m-5 {width: 41.66%;}
     .col-m-6 {width: 50%;}
@@ -323,7 +322,6 @@ li {
     .col-1 {width: 8.33%;}
     .col-2 {width: 16.66%;}
     .col-3 {width: 25%;}
-    .col-3s {width: 30%;}
     .col-4 {width: 33.33%;}
     .col-5 {width: 41.66%;}
     .col-6 {width: 50%;}
@@ -334,4 +332,5 @@ li {
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
     .col-s {width: 17.33%;}
+    .margin_d {margin-left: 80px;}
 }

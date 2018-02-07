@@ -65,8 +65,23 @@ function get_like(objet) {
 	xhr.send('img='+img_id);
 }
 
+// For escqpe jqvqscript injection
+function escapeHtml(text) {
+	var map = {
+	  '&': '&amp;',
+	  '<': '&lt;',
+	  '>': '&gt;',
+	  '"': '&quot;',
+	  "'": '&#039;'
+	};
+  
+	return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+  }
+
 function add_comment(objet) {
-	var value = objet.value;
+	console.log('in add comment');
+	var value = escapeHtml(objet.value);
+	console.log(value);
 	var img_id = objet.id;
 	if (value !== '') {
 		xhr.onreadystatechange = function() {
