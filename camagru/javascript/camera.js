@@ -1,13 +1,13 @@
 var video = document.getElementById('video'),
 		canvas = document.getElementById('canvas'),
-		gallerie = document.getElementById('gallerie'),
+		galerie = document.getElementById('galerie'),
 		photo = document.getElementById('photo'),
 		save = document.getElementById('save_button'),
 		streaming = false,
 		width = 400,
 		height = 300,
-		gallerie_img = [],
-		nb_gallerie_img = 0, //pour pagination a faire
+		galerie_img = [],
+		nb_galerie_img = 0, //pour pagination a faire
 		i = 0, //compteur multiusage
 		effet = 0,
 		iFilter = 0,
@@ -232,16 +232,23 @@ if (hasGetUserMedia()) {
 	document.getElementById('filtre').addEventListener('click', function(event) {
 		effet = filters[iFilter++ % filters.length];
 		var image = document.getElementById('image');
+		var montage = document.getElementById('montage');
 		/* ajoute le filtre au video selon navigateur */
 		if (image && effet) {
 			image.style.webkitFilter = effet;
 			image.style.mozFilter = effet;
 			image.style.filter = effet;
+			montage.style.webkitFilter = effet;
+			montage.style.mozFilter = effet;
+			montage.style.filter = effet;
 		}
 		else if (effet) {
 			video.style.webkitFilter = effet;
 			video.style.mozFilter = effet;
 			video.style.filter = effet;
+			montage.style.webkitFilter = effet;
+			montage.style.mozFilter = effet;
+			montage.style.filter = effet;
 		}
 		event.preventDefault();
 	});
@@ -254,26 +261,23 @@ if (hasGetUserMedia()) {
 		//si methode POST modifier le type MIME avec la ligne suivante
 		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 		xhr.onreadystatechange = function() {
-			if (xhr.readyState < 4) {
-				save.value = "Enregistrement en Cours";
-			}
-			else if (xhr.readyState == 4 && xhr.status == 200) {
+			if (xhr.readyState == 4 && xhr.status == 200) {
 				var return_data = xhr.responseText;
 				if (return_data !== "false") {
-					var div_gallerie = document.getElementById('gallerie');
-					if (!div_gallerie) {
-						div_gallerie = document.createElement('div');
-						div_gallerie.setAttribute('class', 'col-11 scrool');
-						div_gallerie.setAttribute('id', 'gallerie');
+					var div_galerie = document.getElementById('galerie');
+					if (!div_galerie) {
+						div_galerie = document.createElement('div');
+						div_galerie.setAttribute('class', 'col-11 scrool');
+						div_galerie.setAttribute('id', 'galerie');
 						var big_div = document.getElementById('container');
-						big_div.appendChild(div_gallerie);
+						big_div.appendChild(div_galerie);
 					}
 					save.style.visibility = 'hidden';
 					var new_div = document.createElement("div");
 					new_div.setAttribute('class', 'col-s vignette');
 					new_div.innerHTML = "<img id='cross_img' width='100%' src='images/"+return_data+"'>\
 					<button id='images/"+return_data+"' class='cross' onclick='sub_img(this);'>X</button>";
-					div_gallerie.insertBefore(new_div, div_gallerie.firstChild);
+					div_galerie.insertBefore(new_div, div_galerie.firstChild);
 				}
 			}
 		}

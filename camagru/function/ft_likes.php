@@ -11,7 +11,7 @@ function get_like_img_user($log_id, $img_id)
     	$query->execute();
     }
     catch(PDOExecption $e) {
-        echo "ERROR suppression de l'image : ".$e->getMessage();
+        echo "ERROR get_like_img_user : ".$e->getMessage();
 	}
 	$data = $query->fetch();
 	$query->closeCursor();

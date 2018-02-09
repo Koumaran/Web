@@ -15,15 +15,23 @@ function chaine_aleatoire($nb_car, $chaine = 'azertyuiopqsdfghjklmwxcvbn12345678
     return $generation;
 }
 
+function mystr_split($str, $c, $nb)
+{
+	$len = strlen($str);
+	$i = 0;
+	while ($i < $len && $str[$i] != $c)
+		$i++;
+	$new_str = substr($str, 0, $i - $nb);
+	return $new_str;
+}
+
 //fonction d'envoie des mails
 function send_mail($key, $sujet)
 {
 	$mail = $_POST['mail'];
 	$login = $_POST['identifiant'];
 	$entete = "From: jsivanes@student.42.fr";
-	$str = strstr($_SERVER[RESQUEST_URI],"/");
-	$uri = strsub($str, 0, strlen($str));
-	$url_activation = 'localhost:'.$_SERVER['SERVER_PORT'].''.$uri.'/config/activation.php';
+	$url_activation = "http://".$_SERVER['HTTP_HOST'].'/'.$_SESSION['SITE_NAME'];
 	if ($sujet === "Activer votre compte")
 	{	
 		$message = 'Bienvenue sur Camagru,
@@ -31,7 +39,7 @@ function send_mail($key, $sujet)
 Pour activer votre compte, veuillez cliquer sur le lien ci dessous
 ou copier/coller dans votre navigateur internet.
 
-'.$url_activation.'?log='.urlencode($login).'&key='.urlencode($key).'
+'.$url_activation.'/config/activation.php?log='.urlencode($login).'&key='.urlencode($key).'
  
  
 ---------------
@@ -50,6 +58,5 @@ Pour pouvoir vous reconnecter à votre compte, veuillez utiliser le mot de pass 
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 	}
 	$res = mail($mail, $sujet, $message, $entete); //envoi du mail
-
 }
 ?>

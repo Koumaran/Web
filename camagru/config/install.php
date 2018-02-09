@@ -52,6 +52,7 @@ $query = "CREATE TABLE User
 						password VARCHAR(255) NOT NULL,  
 						mail VARCHAR(255) NOT NULL,
 						rang INT NOT NULL,
+						notification BOOLEAN NOT NULL DEFAULT TRUE,
 						cle VARCHAR(255) NOT NULL,
 						valid INT,
 						portrait VARCHAR(255))

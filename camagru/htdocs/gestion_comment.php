@@ -10,12 +10,13 @@ include("../function/ft_user.php");
 if (isset($_POST['img_id']) && isset($_POST['value']) && isset($_POST['state']))
 {
 	$img_id = $_POST['img_id'];
-	$value = $_POST['value'];
+	$value = htmlspecialchars($_POST['value']);
 	if ($_POST['state'] == 1)
 	{
 		if (($result = add_comment($id, $img_id, $value))!== 0) {
 			$id_user_img = get_id_user_img($img_id);
-			if ($id_user_img !== $id)
+			$notification = get_notification($id_user_img);
+			if ($notification && $id_user_img != $id)
 			{
 				$user_name = get_user_name($id_user_img);
 				$user_mail = get_user_mail($id_user_img);

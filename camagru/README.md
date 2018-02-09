@@ -1,6 +1,3 @@
-todo:
-revoir les image de montage leur taille et leur forme
-
 
 # Camagru
 

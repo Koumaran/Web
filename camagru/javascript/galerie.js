@@ -66,7 +66,6 @@ function get_like(objet) {
 }
 
 function add_comment(objet) {
-	var value = objet.value;
 	var img_id = objet.id;
 	if (value !== '') {
 		xhr.onreadystatechange = function() {

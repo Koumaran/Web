@@ -2,7 +2,7 @@
 include('function/error.php');
 include('function/function_1.php');
 if ($id==0) erreur('Vous ne pouvez pas accéder à cette page si vous n\'êtes pas connecté');
-$query = $pdo->prepare("SELECT name, mail, password FROM User WHERE name = :login");
+$query = $pdo->prepare("SELECT name, mail, password, notification FROM User WHERE name = :login");
 $query->execute(array(':login' => $pseudo));
 $data = $query->fetch();
 $query->closeCursor();
@@ -23,6 +23,9 @@ if (!isset($_POST['modifer']) && !isset($_POST['change_pass']))
 			</div>
 			<div>
 				<label>E-Mail :</label><input type="mail" name="mail" value=<?echo'"'.$data['mail'].'"'?> />
+			</div>
+			<div>
+				<input type="checkbox" name="notification" value="true" <?echo ($data['notification'] == true ? 'checked' : '');?>> Recevoir les notifications!
 			</div>
 		</div>
 		<div class="bottom">
@@ -56,9 +59,10 @@ if (!isset($_POST['modifer']) && !isset($_POST['change_pass']))
 </div>
 <?}
 else if (isset($_POST['modifer']) && !empty($_POST['login']) && filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
-		if ($_POST['login'] != $data['name'] || $_POST['mail'] != $data['mail']) {
-		$query = $pdo->prepare('UPDATE User SET name = :new_login, mail = :mail WHERE id_user = :id');
-		$query->execute(array(':new_login' => $_POST['login'], ':mail' => $_POST['mail'], ':id' => $id));
+		$noti = (isset($_POST['notification'])) ? 1 : 0;
+		if ($_POST['login'] != $data['name'] || $_POST['mail'] != $data['mail'] || $noti != $data['notification']) {
+		$query = $pdo->prepare('UPDATE User SET name = :new_login, mail = :mail, notification = :noti WHERE id_user = :id');
+		$query->execute(array(':new_login' => $_POST['login'], ':mail' => $_POST['mail'], ':noti' => $noti, ':id' => $id));
 		$_SESSION['pseudo'] = $_POST['login'];
 		redirect("index.php?page=compte.php", "votre modification est envoyer!");
 		}

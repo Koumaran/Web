@@ -19,7 +19,7 @@ if ($nb_img != 0)
 		$query->execute();
 	}
 	catch(PDOExeption $e) {
-		die("Erreur gallerie: ".$e->getMessage());
+		die("Erreur galerie: ".$e->getMessage());
 	}
 	while (($data = $query->fetch()))
 	{
@@ -27,15 +27,18 @@ if ($nb_img != 0)
 		$likes = ($likes === true)? "like" : "not_like";
 		?>
 		<div class="col-3 margin_d">
-			<div id="up_gallerie" class="booth">
-				<div class="pic_gallerie">
+			<div id="up_galerie" class="booth">
+				<div class="pic_galerie">
 					<img src=<?echo $data['img'];?> style="width:100%;">
 				</div>
+				<? if ($id != 0) {?>
 				<input type='button' id=<?echo $data['id_img']?> class=<?echo $likes;?> onclick="get_like(this);" value=<?if ($likes === 'like') {echo $data['likes'];} else {echo'Like';}?>>
+				<? } ?>
 			</div>
 			<div id="commentbox" class="commentbox" style="border-top: 0;">
+				<? if ($id != 0) { ?>
 				<input id=<?echo $data['id_img'];?> type="text" maxlength="300" name="comment_text" class="comment_text" placeholder="Un commentaire?" onKeyPress="if (event.keyCode == 13) add_comment(this);">
-				<?
+				<? }
 				$comments = get_comment_img($data['id_img']);
 				foreach ($comments as $comment) {
 					$user_name = get_user_name($comment['id_user']);
@@ -55,9 +58,9 @@ if ($nb_img != 0)
 		while ($i++ < $nbPage)
 		{
 			if ($i == $cPage) {
-				echo '<a href="index.php?page=gallerie.php&p='.$i.'" class="active">'.$i.'</a>';				
+				echo '<a href="index.php?p='.$i.'" class="active">'.$i.'</a>';				
 			} else {
-				echo '<a href="index.php?page=gallerie.php&p='.$i.'">'.$i.'</a>';
+				echo '<a href="index.php?p='.$i.'">'.$i.'</a>';
 			}
 		}
 		?></div><?
@@ -65,7 +68,7 @@ if ($nb_img != 0)
 }
 else
 {
-	echo "<div class='col-12'><p style='text-align:center;'><bold>La gallerie est vide...</bold><p>";
+	echo "<div class='col-12'><p style='text-align:center;'><bold>La galerie est vide...</bold><p>";
 }
 ?>
-<script type="text/javascript" src="javascript/gallerie.js"></script>
+<script type="text/javascript" src="javascript/galerie.js"></script>
