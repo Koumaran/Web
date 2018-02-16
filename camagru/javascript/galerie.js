@@ -67,6 +67,7 @@ function get_like(objet) {
 
 function add_comment(objet) {
 	var img_id = objet.id;
+	var value = objet.value;
 	if (value !== '') {
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
@@ -110,8 +111,4 @@ function sub_comment(objet) {
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send('id_comment='+id+"&state=2");
 }
-
-
-
-
 

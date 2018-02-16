@@ -98,15 +98,14 @@ function add_file(evt)
 		}
 		reader.readAsDataURL(files[0]);
 		document.getElementById('photo_booth').appendChild(image);
-		document.getElementById('container').removeChild(document.getElementById('add_file'));			
+		document.getElementById('div_file').removeChild(document.getElementById('add_file'));			
 		document.getElementById('image').style.width = "400px";
 		document.getElementById('image').style.height = "300px";
 		var go_back = document.createElement('input');
 		go_back.type = 'button';
 		go_back.value = 'Webcam';
-		go_back.setAttribute('class', 'col-12');
 		go_back.setAttribute('onclick', "window.location='index.php?page=photobooth.php'");
-		document.getElementById('container').insertBefore(go_back, document.getElementById('button_box'));
+		document.getElementById('div_file').appendChild(go_back);
 	}
 };
 
@@ -288,6 +287,7 @@ if (hasGetUserMedia()) {
 	//ajout du boutton d'ajout d'image
 	var file_getter = document.createElement('input');
 	tmp_div = document.createElement('div');
+	tmp_div.setAttribute('id', 'div_file');
 	file_getter.setAttribute('id', 'add_file');
 	file_getter.setAttribute('type', 'file');
 	file_getter.setAttribute('accept', '.png, .jpeg, .gif');
