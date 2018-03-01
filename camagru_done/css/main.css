@@ -1,0 +1,336 @@
+.row::after {
+    content: "";
+    clear: both;
+    display: inline;
+}
+[class*="col-"] {
+    float: left;
+    padding: 1%;
+}
+.col-s {
+  width: 23%;
+}
+.col-p {
+  margin: 0 auto;
+}
+html {
+  max-width: 1800px;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+.scrool {
+  overflow-y: scroll;
+}
+#header {
+	background-color: #BA2F36;
+  right: 0;
+  top: 0;
+  left: 0;
+  max-width: 1800px;
+}
+#header p {
+  font-size: 44px;
+  margin: 0 auto;
+  margin-left: 5%;
+}
+ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+li {
+	display: inline-flex;
+	list-style: none; /* necessaire pour IE7*/
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu a {
+	font-size: 18px;
+	text-decoration: none;
+	color: black;
+}
+.menu a:hover {
+    color: white;
+}
+#container {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-bottom: 5%;
+  height: 90%;
+  text-align: center;
+  overflow: auto;
+}
+#footer {
+  margin: 0 auto;
+  height: 5%;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  text-align: right;
+  background-color: #BA2F36;
+  max-width: 1800px;
+}
+/*
+.aside {
+    background-color: #33b5e5;
+    padding: 15px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+*/
+/*design des formulaire*/
+.form_wrapper{
+   background:#fff;
+   border:1px solid #ddd;
+   margin:0 auto;
+   margin-top: 10%;
+   font-size:20px;
+   -moz-box-shadow:1px 1px 7px #ccc;
+   -webkit-box-shadow:1px 1px 7px #ccc;
+   box-shadow:1px 1px 7px #ccc;
+}
+/*design photobooth & galerie*/
+.booth {
+    background:#fff;
+    border:10px solid #ddd;
+    margin:0 auto;
+    height: auto;
+    -moz-box-shadow:1px 1px 7px #ccc;
+    -webkit-box-shadow:1px 1px 7px #ccc;
+    box-shadow:1px 1px 7px #ccc;
+}
+/* Partie photobooth */
+#photo_booth {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+}
+#video {
+  box-sizing: content-box;
+  margin: auto;
+}
+
+#montage_box {
+  max-width: 1800px;
+}
+#montages {
+  background: none;
+  border: none;
+  display: inline-block;
+  height: 5vw;
+  width: 5vw;
+  cursor:pointer;
+}
+.capture_button {
+  display:block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color:#BA2F36;
+  color:#fff;
+  text-align: center;
+  text-decoration: none;
+  visibility: hidden;
+  height: 33.33%;
+}
+.save_button {
+  display:block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color:#BA2F36;
+  color:#fff;
+  text-align: center;
+  text-decoration: none;
+  visibility: hidden;
+  height: 33.33%;
+}
+#photo {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  max-height: 300px;
+  overflow: hidden; 
+  box-sizing: content-box;
+}
+#canvas {
+  display: none;
+}
+#galerie {
+  box-shadow: 2px 2px 7px #ccc;
+  max-height: 500px;
+}
+/*design photo_galerie*/
+.galeriebox {
+  position: relative;
+}
+.pic_galerie {
+  background:#fff;
+  border:1px solid #ddd;
+  margin:0 auto;
+  -moz-box-shadow:1px 1px 7px #ccc;
+  -webkit-box-shadow:1px 1px 7px #ccc;
+  box-shadow:1px 1px 7px #ccc;
+}
+/*button like*/
+.like {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  border-radius:12px 0 12px 0;
+  background: #BA2F36;
+  border:none;
+  color:#fff;
+  font:bold 12px Verdana;
+  padding:6px 0 6px 0;
+  box-shadow:1px 1px 3px #999;
+}
+.not_like {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  border-radius:12px 0 12px 0;
+  background: #f5f5f5;
+  border:none;
+  color:#555;
+  font:bold 12px Verdana;
+  padding:6px 0 6px 0;
+  box-shadow:1px 1px 3px #999;
+}
+/*contenue commentaire page galerie*/
+.comment_text {
+  width: 98%;
+}
+.comment_but {
+  width: 15%;
+  border-radius:5px 5px 5px 5px;
+  background: #f5f5f5;
+  border:none;
+  color:#555;
+  font:bold 10px Verdana;
+  box-shadow:1px 1px 3px #999;
+}
+.commentbox {
+  max-height: 300px;
+  overflow-y: scroll;
+  width: 100%;
+}
+.dialogbox {
+  position: relative;
+  margin: 10px 5px;
+  background-color: #DADADA;
+  border-radius: 3px;
+  border: 5px solid #ccc;
+}
+.message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+/* permet dde faire une fleche vers le haut sur la bulle de text */
+/*.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #ccc;
+}
+
+.tip-up {
+  top: -25px;  /*Same as body margin top + border */
+/*  left: 10px;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-top-color: transparent;
+}
+*/
+/*pagination */
+.pagination {
+  clear: both;
+  position: relative;
+  text-align: center;    
+}
+
+.pagination a {
+  display: inline-block;
+  color: black;
+  margin: 2px 2px 2px 0;
+  padding:6px 9px 5px 9px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #BA2F36;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+/*Croix rouge*/
+.vignette {
+    position: relative;
+}
+.cross {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: red;
+    background: rgba(255,255,255,0);
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+@media only screen and (min-width: 767px) {
+    /* For tablets: */
+    .col-m-1 {width: 8.33%;}
+    .col-m-2 {width: 16.66%;}
+    .col-m-3 {width: 25%;}
+    .col-m-4 {width: 33.33%;}
+    .col-m-5 {width: 41.66%;}
+    .col-m-6 {width: 50%;}
+    .col-m-7 {width: 58.33%;}
+    .col-m-8 {width: 66.66%;}
+    .col-m-9 {width: 75%;}
+    .col-m-10 {width: 83.33%;}
+    .col-m-11 {width: 91.66%;}
+    .col-m-12 {width: 100%;}
+    .col-s {width: 18.33%;}
+}
+@media only screen and (min-width: 1025px) {
+    /* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    .col-s {width: 17.33%;}
+    .margin_d {margin-left: 80px;}
+}
