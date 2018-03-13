@@ -1,5 +1,7 @@
 
 var xhr = getXMLHttpRequest();
+/* var user_id = get_user_id();
+var img_tab = get_img(); */
 
 function getXMLHttpRequest() {
 	var xhr = null;
@@ -22,17 +24,64 @@ function getXMLHttpRequest() {
 	return xhr;
 }
 
+// pagination infinit
+/* function get_img() {
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0))
+		{
+			$result = xhr.responseText;
+			img_tab = JSON.parse($result);
+			if (img_tab)
+				print_img(0, img_tab.length);
+		}
+	}
+	xhr.open("GET", "htdocs/gestion_img.php", true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send();
+}
+
+function create_div(class_name, id_name) {
+	let new_div = document.createElement('div');
+	new_div.setAttribute('class', class_name);
+	new_div.setAttribute('id', id_name);
+	return new_div;
+}
+
+function print_img(start_number, end_number)
+{
+	if (start_number < end_number)
+	{
+		let i = 0;
+		let div_big_img_box;		
+		while (start_number < end_number && img_tab[start_number]) {
+			if (i % 3 == 0) {
+				div_big_img_box = create_div('col-12', 'big_img_box');
+				document.getElementById('container').appendChild(div_big_img_box);
+			}
+			i++;
+			let div_img_box = create_div('col-3 margin_d', 'img_box');
+			let up_gallerie = create_div('booth', 'up_galerie');
+			let pic_galerie = create_div('pic_galerie', 'pic_galerie');
+			let img = document.createElement('img');
+			img.setAttribute('src', img_tab[start_number].img);
+			up_gallerie.appendChild(img);
+			up_gallerie.appendChild(pic_galerie);
+			div_img_box.appendChild(up_gallerie);
+			div_big_img_box.appendChild(div_img_box);
+			start_number++;
+		}
+	}
+}
+ */
+
 // fonction opposer de insertBefor 
 function insertAfter(newElement,targetElement) {
-    // target is what you want it to go after. Look for this elements parent.
     var parent = targetElement.parentNode;
 
-    // if the parents lastchild is the targetElement...
     if (parent.lastChild == targetElement) {
-        // add the newElement after the target element.
         parent.appendChild(newElement);
     } else {
-        // else the target has siblings, insert the new element between the target and it's next sibling.
         parent.insertBefore(newElement, targetElement.nextSibling);
     }
 }

@@ -23,7 +23,7 @@ include("function/verif_function.php");
 		<?php include("htdocs/entete.php"); ?>
 		<div id='container'>
 		<?php
-		if (!$_SESSION['URL'] || !$_SESSION['SITE_NAME']) {
+		if (!isset($_SESSION['URL']) || !isset($_SESSION['SITE_NAME'])) {
 			$_SESSION['URL'] = mystr_split("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'], '?', 0);
 			$tab = explode('/', $_SESSION['URL']);
 			$_SESSION['SITE_NAME'] = $tab[3];

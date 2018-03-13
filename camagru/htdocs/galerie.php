@@ -21,8 +21,13 @@ if ($nb_img != 0)
 	catch(PDOExeption $e) {
 		die("Erreur galerie: ".$e->getMessage());
 	}
+	$i = 0;
 	while (($data = $query->fetch()))
 	{
+		if ($i == 0) {
+			?> <div class="col-12" id="big_img_box"> <?
+		}
+		$i += 1;
 		$likes = get_like_img_user($id, $data['id_img']);
 		$likes = ($likes === true)? "like" : "not_like";
 		?>
@@ -47,6 +52,10 @@ if ($nb_img != 0)
 						echo "<button class='cross' onclick='sub_comment(this);'>X</button></div>";
 					else
 						echo "</div>";
+				}
+				if ($i == 3) {
+					$i = 0;
+					?> </div> <?
 				}
 				?>
 			</div>

@@ -45,7 +45,7 @@ while (false !== ($montage = readdir($montages))) {
 	$len = count($tab_img);
 	if ($len > 0) {
 		echo "<div id='galerie' class='col-12 scrool'>";
-		while ($tab_img[--$len]['img'])
+		while ($len-- > 0)
 		{
 			echo "<div class='col-s vignette'>
 				<img id='cross_img' width='100%' src='".$tab_img[$len]['img']."'>
